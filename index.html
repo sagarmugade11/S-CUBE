@@ -13,42 +13,9 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
       background-color: #f4f4f4;
       color: #333;
       scroll-behavior: smooth;
-    }
-
-    header {
-      position: relative;
-      height: 90vh;
-      color: white;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    header video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-    }
-
-    header p {
-      font-size: 1.2rem;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
     }
 
     nav {
@@ -74,11 +41,41 @@
       color: #f0b429;
     }
 
+    header {
+      position: relative;
+      height: 90vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    header video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
     .section {
       padding: 60px 20px;
       text-align: center;
       background: white;
-      transition: background 0.3s;
     }
 
     .section h2 {
@@ -98,14 +95,14 @@
       background: #fff;
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       width: 280px;
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
     .service-card h3 {
@@ -150,21 +147,9 @@
   </nav>
 
   <header id="home">
-    <!-- Background Video -->
-<video autoplay loop muted playsinline>
-  <source src="Video/4480575-hd_1920_1080_30fps.mp4" type="video/mp4" />
-  <source src="Video/5342015-hd_1920_1080_30fps.mp4" type="video/mp4" />
-  <source src="Video/5513063-hd_1920_1080_30fps.mp4" type="video/mp4" />
-  <source src="Video/6007431-uhd_3840_2160_24fps.mp4" type="video/mp4" />
-  <source src="Video/6474082-uhd_3840_2160_25fps.mp4" type="video/mp4" />
-  <source src="Video/6474367-uhd_3840_2160_25fps.mp4" type="video/mp4" />
-  <source src="Video/7646802-uhd_2160_3840_25fps.mp4" type="video/mp4" />
-  <source src="Video/8471039-hd_1080_1920_25fps.mp4" type="video/mp4" />
-  Your browser does not support HTML5 video.
-</video>
+    <!-- Video Background -->
+    <video id="bgVideo" autoplay muted playsinline></video>
 
-
-    <!-- Overlay Text -->
     <div>
       <h1>SCume Builders & Developers</h1>
       <p>Building your dreams with trust and quality</p>
@@ -199,6 +184,33 @@
   <footer>
     <p>© 2025 SCume Builders & Developers. All Rights Reserved.</p>
   </footer>
+
+  <!-- JavaScript to Loop Through Videos -->
+  <script>
+    const videoList = [
+      "Video/4480575-hd_1920_1080_30fps.mp4",
+      "Video/5342015-hd_1920_1080_30fps.mp4",
+      "Video/5513063-hd_1920_1080_30fps.mp4",
+      "Video/6007431-uhd_3840_2160_24fps.mp4",
+      "Video/6474082-uhd_3840_2160_25fps.mp4",
+      "Video/6474367-uhd_3840_2160_25fps.mp4",
+      "Video/7646802-uhd_2160_3840_25fps.mp4",
+      "Video/8471039-hd_1080_1920_25fps.mp4"
+    ];
+
+    let current = 0;
+    const videoElement = document.getElementById("bgVideo");
+
+    function playNextVideo() {
+      videoElement.src = videoList[current];
+      videoElement.load();
+      videoElement.play();
+      current = (current + 1) % videoList.length; // loop back
+    }
+
+    videoElement.addEventListener("ended", playNextVideo);
+    playNextVideo(); // start first video
+  </script>
 
 </body>
 </html>
